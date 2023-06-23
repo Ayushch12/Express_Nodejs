@@ -38,6 +38,10 @@
 	margin-top: 0;
 }
 
+.form_container h2 {
+	font-size: 30px;
+	margin-top: -3px;
+}
 .input {
 	outline: none;
 	border: none;
@@ -77,6 +81,7 @@
 	font-size: 40px;
 	align-self: center;
 }
+
 
 .white_btn,
 .green_btn {
