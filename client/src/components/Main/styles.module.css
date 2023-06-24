@@ -1,27 +1,119 @@
 .navbar {
-	width: 100%;
-	height: 70px;
-	background-color: #3bb19b;
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
+  width: 100%;
+  height: 70px;
+  background-color: #3bb19b;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .navbar h1 {
-	color: white;
-	font-size: 25px;
-	margin-left: 20px;
+  color: white;
+  font-size: 25px;
+  margin-left: 20px;
 }
 
 .white_btn {
-	border: none;
-	outline: none;
-	padding: 12px 0;
-	background-color: white;
-	border-radius: 20px;
-	width: 120px;
-	font-weight: bold;
-	font-size: 14px;
-	cursor: pointer;
-	margin-right: 20px;
+  border: none;
+  outline: none;
+  padding: 12px 0;
+  background-color: white;
+  border-radius: 20px;
+  width: 120px;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+  margin-right: 20px;
+}
+
+.btn {
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btn-info {
+  background-color: blue;
+  color: white;
+}
+
+.btn-danger {
+  background-color: red;
+  color: white;
+}
+
+.btn-success {
+  background-color: rgb(68, 219, 68);
+  color: white;
+}
+
+.table-container {
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+  overflow-x: auto;
+}
+.table-container {
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  width: 100%;
+  overflow-x: auto;
+}
+h1 {
+  text-align: center;
+  height: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+table {
+  width: 90%;
+  border-collapse: collapse;
+  border: 1px solid #ddd;
+  margin-left: 5rem;
+  margin: 4rem;
+}
+
+th,
+td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+@media screen and (max-width: 600px) {
+  .table-container {
+    overflow-x: auto;
+    display: block;
+  }
+
+  table {
+    width: 100%; /* Adjust as needed */
+  }
+
+  th,
+  td {
+    display: block;
+  }
+
+  th {
+    text-align: left;
+  }
+
+  tbody tr {
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+  }
 }

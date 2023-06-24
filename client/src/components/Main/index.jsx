@@ -1,6 +1,3 @@
-// Frontend: ProductList.js
-
-
 import styles from "./styles.module.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -14,22 +11,10 @@ const Main = () => {
   const [products, setProducts] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:8080/getProducts")
+      .get("http://localhost:8080/api/productRoutes")
       .then((products) => setProducts(products.data))
       .catch((err) => console.log(err));
   }, []);
-// useEffect(() => {
-//     const fetchData = async () => {
-//       try {
-//         const response = await axios.get('https://randomuser.me/api');
-//         setProducts(response.data);
-//       } catch (error) {
-//         console.error('Failed to fetch data:', error);
-//       }
-//     };
-
-//     fetchData();
-//   }, []);
 
   return (
     <div className={styles.main_container}>
@@ -39,19 +24,61 @@ const Main = () => {
           Logout
         </button>
       </nav>
-      <h1>Data List</h1>
-      {/* {products.map((product) => (
-        <div key={product._id}>
-          <p>Name: {product.name}</p>
-        </div>
-      ))} */}
-	  {products.map(product => {
-         <tr>
-          <td>{product.name}</td>
-          <td>{product.price}</td>
-         </tr>
-    })}
 
+
+      <h1>Products Data  List</h1>
+      <div className="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>id</th>
+              <th>name</th>
+              <th>type</th>
+              <th>price</th>
+              <th>rating</th>
+              <th>warranty_years</th>
+              <th>available</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {products.map((product) => (
+              <tr key={product._id}>
+                <td>{product._id}</td>
+                <td>{product.name}</td>
+                <td>{product.type}</td>
+                <td>{product.price}</td>
+                <td>{product.rating}</td>
+                <td>{product.warranty_years}</td>
+                <td>{product.available}</td>
+
+                <td>
+                  <button
+                    onClick={() => this.editUser()}
+                    className="btn btn-info"
+                  >
+                    Update
+                  </button>
+                  <button
+                    style={{ marginLeft: "10px" }}
+                    onClick={() => this.deleteUser()}
+                    className="btn btn-danger"
+                  >
+                    Delete
+                  </button>
+                  <button
+                    style={{ marginLeft: "10px" }}
+                    onClick={() => this.viewUser()}
+                    className="btn btn-success"
+                  >
+                    View
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

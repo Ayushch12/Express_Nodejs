@@ -10,11 +10,10 @@ const Product = require('../models/productModel');
 //Routes CRUD
 
 // Obtenir tous les produits
-router.get('/getProducts', async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const products = await Product.find({});
-    res.send({ status: "ok", data: products});
-    // res.status(200).json(products);
+    res.status(200).json(products);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
