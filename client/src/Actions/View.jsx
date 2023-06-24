@@ -19,9 +19,9 @@ function View() {
   return (
     <div>
       <br></br>
-      <div className="card col-md-6 offset-md-3">
-        <h3 className="text-center">View Product Details</h3>
-        <table className="table table-striped table-bordered">
+      <div className="card col-md-6 offset-md-3 ">
+        <h3 className="text-center ">View Product Details</h3>
+        <table className="table table-striped table-bordered border-2" >
           <thead>
             <tr>
               <th>ID</th>

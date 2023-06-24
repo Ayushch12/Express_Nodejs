@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-
 const Main = (product) => {
   const [selectedProductId, setSelectedProductId] = useState([]);
 
@@ -35,7 +34,6 @@ const Main = (product) => {
       .catch((err) => console.log(err));
   };
 
-
   // const [products, setProducts] = useState([]);
 
   // useEffect(() => {
@@ -44,8 +42,6 @@ const Main = (product) => {
   //     .then((products) => setProducts(products.data))
   //     .catch((err) => console.log(err));
   // }, []);
-
-
 
   const handleViewClick = (_id) => {
     setSelectedProductId(_id);
@@ -59,6 +55,10 @@ const Main = (product) => {
           Logout
         </button>
       </nav>
+      <div>
+        {" "}
+        <Link to="/create" ><button  className="btn btn-success" style={{marginTop: "2%", marginLeft: "1%"}}>ADD PRODUCTS!</button></Link>
+      </div>
 
       <h1>Products Data List</h1>
       <div className="table-container">
@@ -107,7 +107,11 @@ const Main = (product) => {
                     onClick={handleViewClick}
                     className="btn btn-success"
                   >
-                    <Link style={{ textDecoration: "none", color: "#ffffff" }} to={`/view/${product._id}` } className="btn-link">
+                    <Link
+                      style={{ textDecoration: "none", color: "#ffffff" }}
+                      to={`/view/${product._id}`}
+                      className="btn-link"
+                    >
                       View
                     </Link>
                   </button>
