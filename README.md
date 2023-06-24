@@ -3,6 +3,11 @@
 
 Pour créer une application React à partir de Node.Js, Express ET MongoDB.
 
+SingUp and LogIn : 
+<img width="1280" alt="Screenshot 2023-06-24 at 15 27 41" src="https://github.com/Ayushch12/Express_Nodejs/assets/96380226/efc84620-8ccf-479a-bead-182d9f2aac24">
+Home page:
+<img width="1280" alt="Screenshot 2023-06-24 at 15 28 05" src="https://github.com/Ayushch12/Express_Nodejs/assets/96380226/109b6773-02ec-40fd-9aba-8e0d9a676962">
+
 ## 🚀 CRUD AND REST API
 Termes et conditions.
 
