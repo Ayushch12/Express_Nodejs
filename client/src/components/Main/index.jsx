@@ -1,20 +1,55 @@
 import styles from "./styles.module.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
-const Main = () => {
+
+const Main = (product) => {
+  const [selectedProductId, setSelectedProductId] = useState([]);
+
   const handleLogout = () => {
     localStorage.removeItem("token");
     window.location.reload();
   };
 
   const [products, setProducts] = useState([]);
+
   useEffect(() => {
+    fetchProducts();
+  }, []);
+
+  const fetchProducts = () => {
     axios
       .get("http://localhost:8080/api/productRoutes")
-      .then((products) => setProducts(products.data))
+      .then((response) => setProducts(response.data))
       .catch((err) => console.log(err));
-  }, []);
+  };
+
+  const handleDeleteClick = (_id) => {
+    axios
+      .delete(`http://localhost:8080/api/productRoutes/${_id}`)
+      .then((response) => {
+        console.log("Product deleted successfully");
+        fetchProducts(); // Fetch updated products list after deletion
+      })
+      .catch((err) => console.log(err));
+  };
+
+
+  // const [products, setProducts] = useState([]);
+
+  // useEffect(() => {
+  //   axios
+  //     .get("http://localhost:8080/api/productRoutes")
+  //     .then((products) => setProducts(products.data))
+  //     .catch((err) => console.log(err));
+  // }, []);
+
+
+
+  const handleViewClick = (_id) => {
+    setSelectedProductId(_id);
+  };
 
   return (
     <div className={styles.main_container}>
@@ -25,8 +60,7 @@ const Main = () => {
         </button>
       </nav>
 
-
-      <h1>Products Data  List</h1>
+      <h1>Products Data List</h1>
       <div className="table-container">
         <table>
           <thead>
@@ -54,24 +88,28 @@ const Main = () => {
 
                 <td>
                   <button
-                    onClick={() => this.editUser()}
+                    // onClick={() => this.editProduct()}
                     className="btn btn-info"
                   >
                     Update
                   </button>
+
                   <button
                     style={{ marginLeft: "10px" }}
-                    onClick={() => this.deleteUser()}
+                    onClick={() => handleDeleteClick(product._id)}
                     className="btn btn-danger"
                   >
                     Delete
                   </button>
+
                   <button
                     style={{ marginLeft: "10px" }}
-                    onClick={() => this.viewUser()}
+                    onClick={handleViewClick}
                     className="btn btn-success"
                   >
-                    View
+                    <Link style={{ textDecoration: "none", color: "#ffffff" }} to={`/view/${product._id}` } className="btn-link">
+                      View
+                    </Link>
                   </button>
                 </td>
               </tr>

@@ -10,6 +10,7 @@ const Product = require('../models/productModel');
 //Routes CRUD
 
 // Obtenir tous les produits
+// router.get('/', async (req, res) => {
 router.get('/', async (req, res) => {
   try {
     const products = await Product.find({});
@@ -30,7 +31,8 @@ router.post('/', async (req, res) => {
 });
 
 // Mettre à jour un produit
-router.put('/:id', async (req, res) => {
+// router.put('/:id', async (req, res) => {
+router.put('/:_id', async (req, res) => {
   try {
     const { id } = req.params;
     const product = await Product.findByIdAndUpdate(id, req.body);
@@ -47,13 +49,14 @@ router.put('/:id', async (req, res) => {
 });
 
 // Supprimer un produit
-router.delete('/:id', async (req, res) => {
+// router.delete('/:id', async (req, res) => {
+router.delete('/:_id', async (req, res) => {
   try {
-    const { id } = req.params;
-    const product = await Product.findByIdAndDelete(id);
+    const { _id } = req.params;
+    const product = await Product.findByIdAndDelete(_id);
 
     if (!product) {
-      return res.status(404).json({ message: `Impossible de trouver un produit avec ID ${id}` });
+      return res.status(404).json({ message: `Impossible de trouver un produit avec ID ${_id}` });
     }
 
     res.status(200).json();
@@ -61,6 +64,23 @@ router.delete('/:id', async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 });
+
+// Obtenir un produit par ID
+router.get('/:_id', async (req, res) => {
+  try {
+    const { _id } = req.params;
+    const product = await Product.findById(_id);
+
+    if (!product) {
+      return res.status(404).json({ message: `Impossible de trouver un produit avec ID ${_id}` });
+    }
+
+    res.status(200).json(product);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
 
 //Exportation routes :
 module.exports = router;
