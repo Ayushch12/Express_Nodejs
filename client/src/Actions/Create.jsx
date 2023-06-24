@@ -90,7 +90,7 @@ const Create = () => {
         </label>
         <br />
         <label>
-          Available:
+          Available :
           <input
             type="text"
             name='available'
