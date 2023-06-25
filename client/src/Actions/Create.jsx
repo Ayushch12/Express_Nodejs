@@ -1,110 +1,135 @@
+
 import React, { useState } from "react";
 import axios from "axios";
-import productService from "../Services/productService";
 
-const Create = () => {
-  const [name, setName] = useState("");
-  const [type, setType] = useState("");
-  const [price, setPrice] = useState("");
-  const [rating, setRating] = useState("");
-  const [warranty_years, setWarranty_years] = useState("");
-  const [available, setAvailable] = useState("");
+function Create() {
+  const url = "http://localhost:8080/api/productRoutes/";
+  const [data, setDate] = useState({
+    _id: "",
+    name: "",
+    type: "",
+    price: "",
+    rating: "",
+    warranty_years: "",
+    available: ""
+  });
 
-  const handleSubmit = async (e) => {
+  function submit(e) {
     e.preventDefault();
+    axios
+      .post(url, {
+        _id: data._id,
+        name: data.name,
+        type: data.type,
+        price: data.price,
+        rating: data.rating,
+        warranty_years: data.warranty_years,
+        available: data.available
+      })
+      .then((res) => {
+        console.log(res.data);
+      });
+  }
 
-
-    const formData = new FormData();
-
-    formData.append('name', name);
-    formData.append('type', type);
-    formData.append('price', price);
-    formData.append('rating', rating);
-    formData.append('warranty_years', warranty_years);
-    formData.append('available', available);
-
-    const response = await productService.create(formData);
-
-    console.log(response);
-    e.target.reset();
-
-  };
+  function handle(e) {
+    const newdata = { ...data };
+    newdata[e.target.id] = e.target.value;
+    setDate(newdata);
+    console.log(newdata);
+  }
 
   return (
-    <div>
-      <h2>Create a Product</h2>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Name:
-          <input
-            type="text"
-            name='name'
-            placeholder="Enter product name"
-            onChange={(e) => setName(e.target.value)}
-            required
-          />
-        </label>
-        <br />
-        <label>
-          Type:
-          <input
-            type="text"
-            name='type'
-            placeholder="Enter product type"
-            onChange={(e) => setType(e.target.value)}
-            required
-          />
-        </label>
-        <br />
-        <label>
-          Price:
-          <input
-            type="number"
-            name='price'
-            placeholder="Enter product price"
-            onChange={(e) => setPrice(Number(e.target.value))}
-            required
-          />
-        </label>
-        <br />
-        <label>
-          Rating:
-          <input
-            type="number"
-            name='rating'
-            placeholder="Enter product rating"
-            onChange={(e) => setRating(Number(e.target.value))}
-            required
-          />
-        </label>
-        <br />
-        <label>
-          Warranty Years:
-          <input
-            type="number"
-            name='warranty_years'
-            placeholder="Enter product warranty_years"
-            onChange={(e) => setWarranty_years(Number(e.target.value))}
-            required
-          />
-        </label>
-        <br />
-        <label>
-          Available :
-          <input
-            type="text"
-            name='available'
-            placeholder="Enter product available"
-            onChange={(e) => setAvailable(e.target.checked)}
-          />
-        </label>
-        <br />
-        <button type="submit">Create Product</button>
-      </form>
+    <div className="container">
+      <div className="row justify-content-center">
+        <div className="col-md-6">
+          <form onSubmit={(e) => submit(e)}>
+            <div className="mb-3">
+              <label htmlFor="_id" className="form-label">
+                _id
+              </label>
+              <input
+                onChange={(e) => handle(e)}
+                id="_id"
+                value={data._id}
+                className="form-control"
+                placeholder="_id"
+                type="text"
+              />
+              <label htmlFor="name" className="form-label">
+                Name
+              </label>
+              <input
+                onChange={(e) => handle(e)}
+                id="name"
+                value={data.name}
+                className="form-control"
+                placeholder="name"
+                type="text"
+              />
+              <label htmlFor="type" className="form-label">
+                Type
+              </label>
+              <input
+                onChange={(e) => handle(e)}
+                id="type"
+                value={data.type}
+                className="form-control"
+                placeholder="type"
+                type="text"
+              />
+              <label htmlFor="price" className="form-label">
+                Price
+              </label>
+              <input
+                onChange={(e) => handle(e)}
+                id="price"
+                value={data.price}
+                className="form-control"
+                placeholder="price"
+                type="number"
+              />
+              <label htmlFor="rating" className="form-label">
+                Rating
+              </label>
+              <input
+                onChange={(e) => handle(e)}
+                id="rating"
+                value={data.rating}
+                className="form-control"
+                placeholder="rating"
+                type="number"
+              />
+              <label htmlFor="warranty_years" className="form-label">
+                Warranty Years
+              </label>
+              <input
+                onChange={(e) => handle(e)}
+                id="warranty_years"
+                value={data.warranty_years}
+                className="form-control"
+                placeholder="warranty_years"
+                type="number"
+              />
+              <label htmlFor="available" className="form-label">
+                Available
+              </label>
+              <input
+                onChange={(e) => handle(e)}
+                id="available"
+                value={data.available}
+                className="form-control"
+                placeholder="available"
+                type="text"
+              />
+            </div>
+            <button type="submit" className="btn btn-primary">
+              Submit
+            </button>
+          </form>
+        </div>
+      </div>
     </div>
   );
-};
+}
 
 export default Create;
-
-

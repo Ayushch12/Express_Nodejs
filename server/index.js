@@ -7,6 +7,8 @@ const connection = require("./db");
 const userRoutes = require("./routes/users");
 const authRoutes = require("./routes/auth");
 const productRoutes = require('./routes/productRoutes');
+//const Create = require('./Actions/Create');
+
 
 // Create an instance of the Express app
 const app = express();
@@ -46,6 +48,7 @@ app.use(cors());
 app.use("/api/users", userRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/productRoutes", productRoutes);
+//app.use("/api/Create",Create);
 
 
 const port = process.env.PORT || 8080;

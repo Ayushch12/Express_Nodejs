@@ -6,6 +6,8 @@ const router = express.Router();
 
 //Importing a productmodels de models :
 const Product = require("../models/productModel");
+//const reate = require("../Actions/Create");
+
 
 //Routes CRUD
 
@@ -21,6 +23,15 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
+  try {
+    const product = await Product.create(req.body);
+    res.status(200).json(product);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+router.post("/Create", async (req, res) => {
   try {
     const product = await Product.create(req.body);
     res.status(200).json(product);
