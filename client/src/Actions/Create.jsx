@@ -1,6 +1,7 @@
 
 import React, { useState } from "react";
 import axios from "axios";
+import "./create.css";
 
 function Create() {
   const url = "http://localhost:8080/api/productRoutes/";
@@ -39,20 +40,18 @@ function Create() {
   }
 
   return (
-    <div className="container">
-      <div className="row justify-content-center">
-        <div className="col-md-6">
+    <div className="CreateProduct">
           <form onSubmit={(e) => submit(e)}>
             <div className="mb-3">
               <label htmlFor="_id" className="form-label">
-                _id
+              ID
               </label>
               <input
                 onChange={(e) => handle(e)}
-                id="_id"
-                value={data._id}
+                id="id"
+                value={data.id}
                 className="form-control"
-                placeholder="_id"
+                placeholder="id"
                 type="text"
               />
               <label htmlFor="name" className="form-label">
@@ -126,8 +125,6 @@ function Create() {
               Submit
             </button>
           </form>
-        </div>
-      </div>
     </div>
   );
 }

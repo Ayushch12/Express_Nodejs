@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import "./View.css";
 
 function View() {
   const [products, setProducts] = useState([]);
@@ -21,7 +22,17 @@ function View() {
       <br></br>
       <div className="card col-md-6 offset-md-3 ">
         <h3 className="text-center ">View Product Details</h3>
-        <table className="table table-striped table-bordered border-2" >
+        {products.map((product) => (
+          <div key={product._id}>
+            <h2>{product.name}</h2>
+            <p><strong>Type:</strong> {product.type}</p>
+            <p><strong>Price:</strong> {product.price}</p>
+            <p><strong>Rating:</strong> {product.rating}</p>
+            <p><strong>Warranty Years:</strong> {product.warranty_years}</p>
+            <p><strong>Available:</strong> {product.available}</p>
+          </div>
+        ))}
+        {/* <table className="table table-striped table-bordered border-2" >
           <thead>
             <tr>
               <th>ID</th>
@@ -46,7 +57,7 @@ function View() {
               </tr>
             ))}
           </tbody>
-        </table>
+        </table> */}
       </div>
     </div>
   );

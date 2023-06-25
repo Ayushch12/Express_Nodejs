@@ -1,3 +1,4 @@
+
 import styles from "./styles.module.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -87,11 +88,23 @@ const Main = (product) => {
                 <td>{product.available}</td>
 
                 <td>
-                  <button
+                  {/* <button
                     // onClick={() => this.editProduct()}
                     className="btn btn-info"
                   >
                     Update
+                  </button> */}
+                  <button
+                    // onClick={() => this.editProduct()}
+                    className="btn btn-info"
+                  >
+                    <Link
+                      style={{ textDecoration: "none", color: "#ffffff" }}
+                      to={`/update`}
+                      className="btn-link"
+                    >
+                      Update
+                    </Link>
                   </button>
 
                   <button
